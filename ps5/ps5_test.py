@@ -158,7 +158,7 @@ class ProblemSet5(unittest.TestCase):
 
         s1 = BeforeTrigger('12 Oct 2016 23:59:59')
         s2 = AfterTrigger('12 Oct 2016 23:59:59')
-
+        
         self.assertTrue(s1.evaluate(ancient), "BeforeTrigger failed to fire on news from long ago")
         self.assertTrue(s1.evaluate(just_now), "BeforeTrigger failed to fire on news happened right before specified time")
 
@@ -246,7 +246,7 @@ class ProblemSet5(unittest.TestCase):
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(ProblemSet5NewsStory))
+    #suite.addTest(unittest.makeSuite(ProblemSet5NewsStory))
     suite.addTest(unittest.makeSuite(ProblemSet5))
     unittest.TextTestRunner(verbosity=2).run(suite)
 
