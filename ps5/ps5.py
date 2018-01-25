@@ -310,7 +310,8 @@ def read_trigger_config(filename):
     # comments. You don't need to know how it works for now!
     trigger_file = open(filename, 'r')
     lines = []
-    triggers = [];
+    triggers = {};
+    returning = [];
     for line in trigger_file:
         line = line.rstrip()
         if not (len(line) == 0 or line.startswith('//')):
@@ -320,14 +321,16 @@ def read_trigger_config(filename):
         line = line.split(",")
         #print(line);
         if "AND OR And Or and or".count(line[1]):
-            line[0] = dic[line[1]](line[2], line[3]);
+            triggers[line[0]] = dic[line[1]](triggers[line[2]], triggers[line[3]]);
+        elif "NOT Not not".count(line[1]):
+            triggers[line[0]] = dic[line[1]](triggers[line[2]]);
         elif line[0] == "ADD":
-            for index in range(len(line)-1):
-                triggers.append(line[index+1]);
+            for name in line[1:]:
+                returning.append(triggers[name]);
         else:
-            line[0] = dic[line[1]](line[2]); 
-    return triggers; # for now, print it so you see what it contains!
-read_trigger_config("triggers.txt");
+            triggers[line[0]] = dic[line[1]](line[2]); 
+    return returning; # for now, print it so you see what it contains!
+#read_trigger_config("triggers.txt");
 
 
 SLEEPTIME = 120 #seconds -- how often we poll
@@ -381,12 +384,10 @@ def main_thread(master):
 
             # Get stories from Yahoo's Top Stories RSS news feed
             stories.extend(process("http://news.yahoo.com/rss/topstories"))
-
             stories = filter_stories(stories, triggerlist)
 
             list(map(get_cont, stories))
             scrollbar.config(command=cont.yview)
-
 
             print("Sleeping...")
             time.sleep(SLEEPTIME)
@@ -401,4 +402,3 @@ if __name__ == '__main__':
     t = threading.Thread(target=main_thread, args=(root,))
     t.start()
     root.mainloop()
-
