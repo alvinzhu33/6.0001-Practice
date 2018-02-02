@@ -17,20 +17,14 @@ def get_permutations(sequence):
             for index in range(len(sequence)):
                 masterList.append(permutation[0:index]+sequence[0]+permutation[index:]);
         return masterList;
-print(get_permutations("abc"))
-print(get_permutations("ab"))
-print(get_permutations("bust"))
 
 if __name__ == '__main__':
-#    #EXAMPLE
-#    example_input = 'abc'
-#    print('Input:', example_input)
-#    print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
-#    print('Actual Output:', get_permutations(example_input))
+    #EXAMPLE
+    example_input = 'abc'
+    print('Input:', example_input)
+    print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
+    print('Actual Output:', get_permutations(example_input))
     
-#    # Put three example test cases here (for your sanity, limit your inputs
-#    to be three characters or fewer as you will have n! permutations for a 
-#    sequence of length n)
-
-    pass #delete this line and replace with your code here
-
+    print(get_permutations("abc"))
+    print(get_permutations("ab"))
+    print(get_permutations("bust"))

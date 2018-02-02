@@ -161,8 +161,7 @@ class PlaintextMessage(Message):
             self.message_text_encrypted (string, created using shift)
 
         '''
-        self.message_text = text;
-        self.valid_words = load_words(WORDLIST_FILENAME);
+        Message.__init__(self, text);
         self.shift = shift;
         self.encryption_dict = self.build_shift_dict(shift);
         self.message_text_encrypted = self.apply_shift(shift);
@@ -217,7 +216,7 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        self.message_text = text;
+        Message.__init__(self, text);
         self.valid_words = load_words(WORDLIST_FILENAME);
 
     def decrypt_message(self):

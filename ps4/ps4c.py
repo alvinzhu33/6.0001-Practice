@@ -131,7 +131,7 @@ class SubMessage(object):
         '''
         encrypt = "";
         for char in self.message_text:
-            if "aeiou".count(char) > 0:
+            if char in VOWELS_LOWER or char in VOWELS_UPPER:
                 #print(char);
                 #print(transpose_dict);
                 #print(transpose_dict[char]);
@@ -152,8 +152,7 @@ class EncryptedSubMessage(SubMessage):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        self.message_text = text;
-        self.valid_words = load_words(WORDLIST_FILENAME);
+        SubMessage.__init__(self, text);
 
     def decrypt_message(self):
         '''
@@ -182,7 +181,7 @@ class EncryptedSubMessage(SubMessage):
             for word in words:
                 word = word.strip(" ,.?!");
                 word = word.lower();
-                if self.valid_words.count(word):
+                if word in self.valid_words:
                     count += 1;
             if count > best[1]:
                 #print("yes");

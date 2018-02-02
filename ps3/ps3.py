@@ -208,26 +208,6 @@ def is_valid_word(word, hand, word_list):
     """
     test = word.lower();
     if word.find('*') >= 0:
-#        #print("index *:", word.find('*'));
-#        for wordInList in word_list:
-#            if len(word) == len(wordInList):
-#                counter -= 1;
-#                break;
-#            else:
-#                for index in range(len(word)):
-#                    #print(word[index]);
-#                    if word[index] == "*":
-#                        if wordInList[index] not in VOWELS:
-#                            #print("1");
-#                            counter -= 1;
-#                            break;
-#                    elif word[index] != wordInList[index]:
-#                        #print("2");
-#                        counter -= 1;
-#                        break;
-#            counter -= 1;
-#        if counter < 1:
-#            return False;
         flag = False;
         for vowel in VOWELS:
             if word.replace('*', vowel) in word_list:
